@@ -1,2 +1,20 @@
 <h1>Articulos#new</h1>
 <p>Find me in app/views/articulos/new.html.erb</p>
+
+<% form_for @articulo do |f| %>
+
+    <% if @articulo.error.any? %>
+        <div id="errors">
+            <ul>
+                <% @articulo.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <%= f.label :titulo %>
+    <%= f.html_field :titulo %>
+    <%= f.label :contenido %>
+    <%= f.html_area :contenido %>
+    <%= f.bottom "Crear articulo" %>
+
+<% end %>

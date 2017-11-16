@@ -1,11 +1,18 @@
 class ArticulosController < ApplicationController
   def new
+    @articulo= Articulo.new
   end
 
   def index
   end
 
   def create
+      @articluo= Articulo.new(articulo_params)
+      if @articulo.save
+        redirect_to @articulo
+      else
+        render 'new'
+      end
   end
 
   def edit
@@ -18,5 +25,10 @@ class ArticulosController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def articulo_params
+    params.require(:articulo).permit(:titulo, :contenido)
   end
 end
