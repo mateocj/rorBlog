@@ -1,18 +1,22 @@
 class ArticulosController < ApplicationController
   def new
-    @articulo= Articulo.new
+    @boton = "Crear"
+    #@articulo= Articulo.new
+    @articulo= current_autor.articulos.build
   end
 
   def index
   end
 
   def create
-      @articluo= Articulo.new(articulo_params)
+      #@articluo= Articulo.new(articulo_params)
+      @articluo= current_autor.articulos.build(articulo_params)
       if @articulo.save
         redirect_to @articulo
       else
         render 'new'
       end
+
   end
 
   def edit
